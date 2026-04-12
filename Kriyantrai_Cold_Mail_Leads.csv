@@ -1,0 +1,5 @@
+Company,Region,Website,Domain,Service Required,Requirement (Software Only),Contact Name,Email,Company Type,Estimated Pitch Pricing
+test1,india,https://test.com,edtech,ai,Machine learning software models for dynamic last-mile routing and AI web chatbots for support.,sudipta,pratihersudip@gmail.com,Startup,$120k
+test2,india,https://test2.com,logistics,app dev,Developing a fully automated mobile ERP application to overhaul the internal warehouse supply chain.,Souvik Makur,souvikmakur2003@gmail.com,Enterprise Startup,$80k
+test3,india,https://test3.com,healthcare,data solutions,Constructing advanced data pipelines for real-time analytics to boost your healthcare onboarding platform.,Souvagya,souvagyad6@gmail.com,Growth Startup,$65k
+test4,india,https://test4.com,e-commerce,web dev,Deploying a highly scalable SaaS backend architecture using Node.js and AWS to handle heavy web traffic.,Anuran,anuranarts@gmail.com,Seed Startup,$25k
