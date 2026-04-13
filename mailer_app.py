@@ -244,18 +244,29 @@ Kriyantrai Team"""
                         msg['To'] = target_email
                         
                         # Send
-                        status_text.text(f"Sending to {target_email} ({row['Company']})...")
+                        status_text.markdown(f'''
+                        <div style="background-color: #f8fafc; border-left: 6px solid #94a3b8; padding: 15px; border-radius: 8px;">
+                            <h4 style="color: #475569; margin: 0;">⚙️ Sending to {target_email} ({row['Company']})...</h4>
+                        </div>
+                        ''', unsafe_allow_html=True)
                         server.send_message(msg)
                         
                         # Progress & Rate Limiting
-                        progress = (index + 1) / len(df)
+                        sent_count += 1
+                        progress = min(sent_count / total_emails, 1.0)
                         progress_bar.progress(progress)
                         
                         # Delay (skip on last email)
-                        if index < len(df) - 1:
-                            delay = random.uniform(delay_min, delay_max)
-                            status_text.text(f"Sleeping for {int(delay)} seconds to prevent spam filters...")
-                            time.sleep(delay)
+                        if sent_count < total_emails:
+                            delay = int(random.uniform(delay_min, delay_max))
+                            for remaining in range(delay, 0, -1):
+                                status_text.markdown(f'''
+                                <div style="background-color: #eff6ff; border-left: 6px solid #3b82f6; padding: 15px; border-radius: 8px;">
+                                    <h4 style="color: #1e3a8a; margin: 0;">📤 Email {sent_count}/{total_emails} dispatched! Next sending in: <b>{remaining}s</b></h4>
+                                </div>
+                                ''', unsafe_allow_html=True)
+                                time.sleep(1)
+                            status_text.empty()
                             
                 st.success("✅ Campaign successfully dispatched!")
             except Exception as e:
@@ -311,18 +322,29 @@ with tab2:
                         msg['To'] = target_email
                         
                         # Send
-                        status_text.text(f"Sending Follow-up to {target_email} ({row['Company']})...")
+                        status_text.markdown(f'''
+                        <div style="background-color: #f8fafc; border-left: 6px solid #94a3b8; padding: 15px; border-radius: 8px;">
+                            <h4 style="color: #475569; margin: 0;">⚙️ Sending Follow-up to {target_email} ({row['Company']})...</h4>
+                        </div>
+                        ''', unsafe_allow_html=True)
                         server.send_message(msg)
                         
                         # Progress & Rate Limiting
-                        progress = (index + 1) / len(df)
+                        sent_count += 1
+                        progress = min(sent_count / total_emails, 1.0)
                         progress_bar.progress(progress)
                         
                         # Delay (skip on last email)
-                        if index < len(df) - 1:
-                            delay = random.uniform(delay_min, delay_max)
-                            status_text.text(f"Sleeping for {int(delay)} seconds to prevent spam filters...")
-                            time.sleep(delay)
+                        if sent_count < total_emails:
+                            delay = int(random.uniform(delay_min, delay_max))
+                            for remaining in range(delay, 0, -1):
+                                status_text.markdown(f'''
+                                <div style="background-color: #eef2ff; border-left: 6px solid #6366f1; padding: 15px; border-radius: 8px;">
+                                    <h4 style="color: #312e81; margin: 0;">🔄 Follow-up {sent_count}/{total_emails} dispatched! Next sending in: <b>{remaining}s</b></h4>
+                                </div>
+                                ''', unsafe_allow_html=True)
+                                time.sleep(1)
+                            status_text.empty()
                             
                 st.success("✅ Follow-up Sequence successfully dispatched!")
             except Exception as e:
