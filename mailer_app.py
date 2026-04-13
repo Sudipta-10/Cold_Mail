@@ -127,6 +127,14 @@ st.markdown("""
         display: none !important;
         background-color: transparent !important;
     }
+    
+    /* Extreme Sidebar Compression */
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+        gap: 0.1rem !important;
+    }
+    [data-testid="stSidebar"] .stNumberInput, [data-testid="stSidebar"] .stTextInput {
+        margin-bottom: -15px !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -136,14 +144,14 @@ if os.path.exists("logo.png"):
     with col2:
         st.image("logo.png", use_container_width=True)
 
-st.sidebar.markdown("<h3 style='text-align: center; margin-top: -10px; margin-bottom: 0px; color: #0f172a; line-height: 1.2;'>Cold_Mail<br>for Kriyantrai</h3>", unsafe_allow_html=True)
-st.sidebar.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9em; margin-bottom: 20px;'>Deliverability & Pipeline Manager</p>", unsafe_allow_html=True)
+st.sidebar.markdown("<h3 style='text-align: center; margin-top: -20px; margin-bottom: 0px; color: #0f172a; line-height: 1.2;'>Cold_Mail<br>for Kriyantrai</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='text-align: center; color: #64748b; font-size: 0.85em; margin-bottom: 0px;'>Deliverability & Pipeline Manager</p>", unsafe_allow_html=True)
 
 st.title("Campaign Dashboard")
 
 # 1. Configuration
-st.sidebar.markdown("<hr style='margin-top: 5px; margin-bottom: 15px;'>", unsafe_allow_html=True)
-st.sidebar.header("⚙️ SMTP Configuration")
+st.sidebar.markdown("<hr style='margin-top: 5px; margin-bottom: 5px;'>", unsafe_allow_html=True)
+st.sidebar.markdown("<h4 style='margin-bottom: 0px; margin-top: 0px; color: #1e293b;'>⚙️ SMTP Configuration</h4>", unsafe_allow_html=True)
 smtp_server = st.sidebar.text_input("SMTP Server", value="smtp.gmail.com")
 smtp_port = st.sidebar.number_input("SMTP Port", value=465)
 sender_email = st.sidebar.text_input("Sender Email")
