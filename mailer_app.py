@@ -128,12 +128,12 @@ st.markdown("""
         background-color: transparent !important;
     }
     
-    /* Extreme Sidebar Compression */
+    /* Balanced Sidebar Compression */
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
-        gap: 0.1rem !important;
+        gap: 0.75rem !important;
     }
     [data-testid="stSidebar"] .stNumberInput, [data-testid="stSidebar"] .stTextInput {
-        margin-bottom: -15px !important;
+        margin-bottom: -5px !important;
     }
     </style>
 """, unsafe_allow_html=True)
