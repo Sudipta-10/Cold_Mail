@@ -5,7 +5,7 @@ from email.message import EmailMessage
 import time
 import random
 
-st.set_page_config(page_title="Custom Cold Mailer", page_icon="📫", layout="wide")
+st.set_page_config(page_title="Kriyantrai Cold Mailer", page_icon="logo.png", layout="wide")
 
 # Custom CSS for premium glassmorphism UI
 st.markdown("""
