@@ -5,6 +5,15 @@ from email.message import EmailMessage
 import time
 import random
 
+def get_smtp_connection(server_host, port):
+    if port == 587:
+        conn = smtplib.SMTP(server_host, port)
+        conn.starttls()
+        return conn
+    else:
+        return smtplib.SMTP_SSL(server_host, port)
+
+
 st.set_page_config(page_title="Kriyantrai Cold Mailer", page_icon="logo.png", layout="wide")
 
 # Custom CSS for premium glassmorphism UI
@@ -232,8 +241,8 @@ Kriyantrai Team"""
             status_text = st.empty()
             
             try:
-                # Login once
-                with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+                # Dynamic Login
+                with get_smtp_connection(smtp_server, smtp_port) as server:
                     server.login(sender_email, sender_password)
                     
                     df_target = df.iloc[start_row:end_row]
@@ -310,8 +319,8 @@ with tab2:
             status_text = st.empty()
             
             try:
-                # Login once
-                with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+                # Dynamic Login
+                with get_smtp_connection(smtp_server, smtp_port) as server:
                     server.login(sender_email, sender_password)
                     
                     df_target = df.iloc[f_start_row:f_end_row]
