@@ -153,20 +153,33 @@ if st.sidebar.button("ENTER 🔐", use_container_width=True, type="primary"):
 
 # 2. Data Loading
 st.header("1. Load Leads")
+uploaded_file = st.file_uploader("Upload custom Leads Data (Optional)", type=['csv', 'xlsx', 'xls'])
 default_file = "Kriyantrai_Cold_Mail_Leads.csv"
+
 try:
-    df = pd.read_csv(default_file)
-    st.markdown(f"""
-    <div style="background-color: #dcfce7; border-left: 6px solid #22c55e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <h4 style="color: #166534; margin: 0;">✅ Successfully loaded {len(df)} leads from {default_file}</h4>
-    </div>
-    """, unsafe_allow_html=True)
-except:
-    uploaded_file = st.file_uploader("Upload your Leads CSV", type=['csv'])
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
+        filename = uploaded_file.name
+        if filename.endswith('.csv'):
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+            
+        st.markdown(f"""
+        <div style="background-color: #dcfce7; border-left: 6px solid #22c55e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #166534; margin: 0;">✅ Successfully loaded {len(df)} custom leads from {filename}</h4>
+        </div>
+        """, unsafe_allow_html=True)
     else:
-        st.stop()
+        # Fallback to the default tracking CSV
+        df = pd.read_csv(default_file)
+        st.markdown(f"""
+        <div style="background-color: #dcfce7; border-left: 6px solid #22c55e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #166534; margin: 0;">✅ Successfully loaded {len(df)} leads from {default_file} (Default)</h4>
+        </div>
+        """, unsafe_allow_html=True)
+except Exception as e:
+    st.error(f"Failed to load data: {str(e)}")
+    st.stop()
 
 st.dataframe(df.head(5))
 
