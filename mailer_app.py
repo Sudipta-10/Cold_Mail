@@ -122,16 +122,7 @@ st.markdown("""
         border: 1px solid #e2e8f0;
     }
     
-    /* Clean up native Streamlit headers, but keep the Sidebar Expand Chevron */
-    [data-testid="stHeader"] {
-        background-color: transparent !important;
-    }
-    [data-testid="stToolbar"] {
-        display: none !important;
-    }
-    [data-testid="stDecoration"] {
-        display: none !important;
-    }
+    /* Let Streamlit natively handle the header so the Toggle Chevron renders properly */
     
     /* Balanced Sidebar Compression */
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
