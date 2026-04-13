@@ -17,113 +17,150 @@ st.markdown("""
     }
     
     .stApp {
-        background: radial-gradient(circle at top left, #1a1c29, #0f111a);
-        color: #e2e8f0;
+        background-color: #f8fafc;
+        color: #1e293b;
     }
     
     /* Headers & Text */
     h1, h2, h3 {
-        color: #f8fafc !important;
+        color: #0f172a !important;
         font-weight: 800 !important;
         letter-spacing: -0.5px;
     }
     
     /* Input Fields */
     .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stNumberInput>div>div>input {
-        background-color: rgba(30, 41, 59, 0.6) !important;
-        color: #f8fafc !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 10px !important;
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
         padding: 12px !important;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1) inset;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
-    .stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {
-        border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
-        background-color: rgba(30, 41, 59, 0.9) !important;
+    .stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus, .stNumberInput>div>div>input:focus {
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
     }
     
     /* Primary Buttons */
-    .stButton>button {
-        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
-        color: white !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        border-radius: 12px !important;
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+        border: none !important;
+        border-radius: 10px !important;
         padding: 0.75rem 2rem !important;
         font-weight: 700 !important;
         font-size: 16px !important;
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4) !important;
+        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2) !important;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        width: 100%;
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-    .stButton>button:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.5) !important;
+    button[kind="primary"] * {
+        color: white !important;
     }
-    .stButton>button:active {
+    button[kind="primary"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3) !important;
+    }
+    button[kind="primary"]:active {
         transform: translateY(1px) !important;
     }
 
     /* Tabs UI */
     .stTabs [data-baseweb="tab"] {
         background: transparent;
-        color: #94a3b8;
+        color: #64748b;
         font-weight: 600;
-        border-bottom: 3px solid transparent;
         padding: 15px 20px;
-        transition: color 0.3s ease;
     }
     .stTabs [aria-selected="true"] {
-        color: #3b82f6 !important;
-        border-bottom-color: #3b82f6 !important;
+        color: #2563eb !important;
     }
     .stTabs [data-baseweb="tab"]:hover {
-        color: #f8fafc;
+        color: #1e293b;
+    }
+    .stTabs [data-baseweb="tab-highlight"] {
+        background-color: #2563eb !important;
     }
 
     /* DataFrame styling */
     [data-testid="stDataFrame"] {
-        border-radius: 12px;
+        border-radius: 10px;
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.05);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
     
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: rgba(15, 17, 26, 0.95) !important;
-        border-right: 1px solid rgba(255,255,255,0.05);
-        backdrop-filter: blur(10px);
+        background-color: #ffffff !important;
+        border-right: 1px solid #e2e8f0;
+    }
+    
+    /* Sidebar Text Fix for Light Mode */
+    [data-testid="stSidebar"] .css-17lntkn, [data-testid="stSidebar"] p, [data-testid="stSidebar"] div, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label {
+        color: #1e293b !important;
+    }
+
+    /* Animated Sidebar Button */
+    @keyframes pulse-glow {
+        0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    }
+    [data-testid="stSidebar"] button[kind="primary"] {
+        animation: pulse-glow 2s infinite ease-in-out !important;
+        margin-top: 15px !important;
+        padding: 0.75rem !important;
+        width: 100%;
     }
     
     /* Info/Success Boxes */
     div[data-testid="stMarkdownContainer"] > div[background-color] {
-        border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.1);
-        backdrop-filter: blur(5px);
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+    
+    /* Clean up native Streamlit headers */
+    [data-testid="stHeader"] {
+        display: none !important;
+        background-color: transparent !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("📫 Premium Cold Mail & Follow-up Manager")
-st.markdown("Ensure deliverability, bypass spam filters, and manage your pipeline.")
+import os
+if os.path.exists("logo.png"):
+    col1, col2, col3 = st.sidebar.columns([1, 8, 1])
+    with col2:
+        st.image("logo.png", use_container_width=True)
+
+st.sidebar.markdown("<h3 style='text-align: center; margin-top: -10px; margin-bottom: 0px; color: #0f172a; line-height: 1.2;'>Cold_Mail<br>for Kriyantrai</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9em; margin-bottom: 20px;'>Deliverability & Pipeline Manager</p>", unsafe_allow_html=True)
+
+st.title("Campaign Dashboard")
 
 # 1. Configuration
+st.sidebar.markdown("<hr style='margin-top: 5px; margin-bottom: 15px;'>", unsafe_allow_html=True)
 st.sidebar.header("⚙️ SMTP Configuration")
 smtp_server = st.sidebar.text_input("SMTP Server", value="smtp.gmail.com")
 smtp_port = st.sidebar.number_input("SMTP Port", value=465)
 sender_email = st.sidebar.text_input("Sender Email")
 sender_password = st.sidebar.text_input("App Password", type="password", help="Use an App Password if using Gmail/Outlook")
+if st.sidebar.button("ENTER 🔐", use_container_width=True, type="primary"):
+    st.sidebar.success("Credentials saved for session!")
 
 # 2. Data Loading
 st.header("1. Load Leads")
 default_file = "Kriyantrai_Cold_Mail_Leads.csv"
 try:
     df = pd.read_csv(default_file)
-    st.success(f"Successfully loaded {len(df)} leads from {default_file}")
+    st.markdown(f"""
+    <div style="background-color: #dcfce7; border-left: 6px solid #22c55e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h4 style="color: #166534; margin: 0;">✅ Successfully loaded {len(df)} leads from {default_file}</h4>
+    </div>
+    """, unsafe_allow_html=True)
 except:
     uploaded_file = st.file_uploader("Upload your Leads CSV", type=['csv'])
     if uploaded_file is not None:
@@ -163,7 +200,14 @@ Kriyantrai Team"""
     delay_min = st.number_input("Min delay between emails (seconds)", value=30)
     delay_max = st.number_input("Max delay between emails (seconds)", value=120)
     
-    if st.button("🚀 Start Campaign Execution"):
+    st.header("4. Target Segment (Row Index)")
+    c1, c2 = st.columns(2)
+    with c1:
+        start_row = st.number_input("Start Row (0-indexed)", min_value=0, max_value=len(df)-1 if len(df) > 0 else 0, value=0, key="c_start")
+    with c2:
+        end_row = st.number_input("End Row (Exclusive)", min_value=1, max_value=len(df), value=len(df), key="c_end")
+    
+    if st.button("🚀 Start Campaign Execution", type="primary"):
         if not sender_email or not sender_password:
             st.error("Please configure your SMTP settings in the sidebar first!")
         else:
@@ -175,7 +219,11 @@ Kriyantrai Team"""
                 with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
                     server.login(sender_email, sender_password)
                     
-                    for index, row in df.iterrows():
+                    df_target = df.iloc[start_row:end_row]
+                    total_emails = len(df_target)
+                    sent_count = 0
+                    
+                    for index, row in df_target.iterrows():
                         if pd.isna(row.get('Email')): continue
                         
                         target_email = str(row['Email']).strip()
@@ -219,7 +267,14 @@ with tab2:
     st.info("Follow-up integration is active. Ensure you use the exact same SMTP credentials above.")
     follow_subject = st.text_input("Follow-up Subject", value="Re: Digital acceleration for {Company}")
     follow_body = st.text_area("Follow-up Body", value="Hi {Contact Name},\n\nJust bumping this up. Let me know if you would like to discuss the {Requirement (Software Only)} implementation.\n\nThanks!", height=150)
-    if st.button("Send Follow-up Sequence"):
+    
+    st.header("Target Segment (Row Index)")
+    c1, c2 = st.columns(2)
+    with c1:
+        f_start_row = st.number_input("Start Row (0-indexed)", min_value=0, max_value=len(df)-1 if len(df) > 0 else 0, value=0, key="f_start")
+    with c2:
+        f_end_row = st.number_input("End Row (Exclusive)", min_value=1, max_value=len(df), value=len(df), key="f_end")
+    if st.button("Send Follow-up Sequence", type="primary"):
         if not sender_email or not sender_password:
             st.error("Please configure your SMTP settings in the sidebar first!")
         else:
@@ -231,7 +286,11 @@ with tab2:
                 with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
                     server.login(sender_email, sender_password)
                     
-                    for index, row in df.iterrows():
+                    df_target = df.iloc[f_start_row:f_end_row]
+                    total_emails = len(df_target)
+                    sent_count = 0
+                    
+                    for index, row in df_target.iterrows():
                         if pd.isna(row.get('Email')): continue
                         
                         target_email = str(row['Email']).strip()
