@@ -4,6 +4,21 @@ import smtplib
 from email.message import EmailMessage
 import time
 import random
+import json
+import os
+from email.utils import make_msgid
+
+TRACKER_FILE = "Kriyantrai_Sent_Tracker.json"
+
+def load_tracker():
+    if os.path.exists(TRACKER_FILE):
+        with open(TRACKER_FILE, 'r') as f:
+            return json.load(f)
+    return {}
+
+def save_tracker(tracker):
+    with open(TRACKER_FILE, 'w') as f:
+        json.dump(tracker, f)
 
 def get_smtp_connection(server_host, port):
     if port == 587:
@@ -271,6 +286,13 @@ Kriyantrai Team"""
                         msg['From'] = sender_email
                         msg['To'] = target_email
                         
+                        # Apply Threading ID
+                        tracker = load_tracker()
+                        new_msg_id = make_msgid(domain="kriyantrai.com")
+                        msg['Message-ID'] = new_msg_id
+                        tracker[target_email] = new_msg_id
+                        save_tracker(tracker)
+                        
                         # Send
                         status_text.markdown(f'''
                         <div style="background-color: #f8fafc; border-left: 6px solid #94a3b8; padding: 15px; border-radius: 8px;">
@@ -348,6 +370,13 @@ with tab2:
                         msg['Subject'] = current_subject
                         msg['From'] = sender_email
                         msg['To'] = target_email
+                        
+                        # Connect Threading Headers if available
+                        tracker = load_tracker()
+                        parent_msg_id = tracker.get(target_email)
+                        if parent_msg_id:
+                            msg['In-Reply-To'] = parent_msg_id
+                            msg['References'] = parent_msg_id
                         
                         # Send
                         status_text.markdown(f'''
