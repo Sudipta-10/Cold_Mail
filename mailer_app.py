@@ -213,6 +213,8 @@ I was researching {Domain} leaders and was incredibly impressed by the growth at
 
 We at Kriyantrai specialize in helping {Company Type} exactly like yours. I see that you might have a need for {Requirement (Software Only)}. We build tailored systems that handle exactly this securely and efficiently.
 
+You can take a look at our website to see some of our work: https://kriyantrai.com/
+
 Are you open to a brief chat next week to discuss how we could implement this for {Company}?
 
 Best regards,
@@ -303,7 +305,7 @@ with tab2:
     st.markdown("Select an existing sent list to schedule auto follow-ups 3-5 days after the initial contact.")
     st.info("Follow-up integration is active. Ensure you use the exact same SMTP credentials above.")
     follow_subject = st.text_input("Follow-up Subject", value="Re: Digital acceleration for {Company}")
-    follow_body = st.text_area("Follow-up Body", value="Hi {Contact Name},\n\nJust bumping this up. Let me know if you would like to discuss the {Requirement (Software Only)} implementation.\n\nThanks!", height=150)
+    follow_body = st.text_area("Follow-up Body", value="Hi {Contact Name},\n\nJust bumping this up. Let me know if you would like to discuss the {Requirement (Software Only)} implementation.\n\nFor reference, feel free to check out our website: https://kriyantrai.com/\n\nThanks!", height=150)
     
     st.header("Target Segment (Row Index)")
     c1, c2 = st.columns(2)
